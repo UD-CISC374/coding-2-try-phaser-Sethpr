@@ -25,6 +25,7 @@ export default class MainScene extends Phaser.Scene {
   cycle: number
   scoreLabel: Phaser.GameObjects.BitmapText
   win: Phaser.GameObjects.BitmapText;
+  haCount: number;
   
 
   
@@ -58,6 +59,7 @@ export default class MainScene extends Phaser.Scene {
     this.hasWon = false;
     this.cycle = 0;
     this.load.bitmapFont("pixelFont", "assets/font.png", "assets/font.xml")
+    this.haCount = 0;
   }
 
   create() {this.physics.add.image(this.width/2,30, "boss");
@@ -127,7 +129,10 @@ export default class MainScene extends Phaser.Scene {
     }
 
     if(!this.player.active){
-      let ha = this.add.bitmapText(Math.floor(Math.random()*this.width),Math.floor(Math.random()*this.height),"pixelFont", "HA", 15 );
+      if(this.haCount < 1500){
+        this.haCount++;
+        let ha = this.add.bitmapText(Math.floor(Math.random()*this.width),Math.floor(Math.random()*this.height),"pixelFont", "HA", 15 );
+      }
     }
     
     this.background.tilePositionY -= 0.5;
@@ -189,7 +194,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   bossShotsManager(){
-    if(this.boss.health>0){
+    if(this.boss.health>0 && this.player.active){
       this.cycle++;
 
       for(let i =0; i<this.bossShots.getChildren().length; i++){

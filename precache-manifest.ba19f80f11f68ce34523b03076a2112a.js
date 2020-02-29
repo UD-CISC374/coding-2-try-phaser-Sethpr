@@ -20,6 +20,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/Images/explosion.png"
   },
   {
+    "revision": "05427110fd2c2de1d4738b31496a53c9",
+    "url": "assets/Images/power-up.png"
+  },
+  {
     "revision": "6387e4bedb194c28efe573c1cc5ce303",
     "url": "assets/Images/ship.png"
   },
@@ -32,16 +36,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/Images/ship3.png"
   },
   {
-    "revision": "b81b1daed58bb22ae7c2762d344d287b",
+    "revision": "584229b5d4b8bf3db3f35202881f0000",
     "url": "assets/citations.md"
   },
   {
-    "revision": "61af47255631cfc9a4df0f07a874f878",
+    "revision": "9d79a2ec01455afa082d23e42f457801",
+    "url": "assets/font.png"
+  },
+  {
+    "revision": "38c02ad8ccaf9579150bb10d283e2b0c",
+    "url": "assets/font.xml"
+  },
+  {
+    "revision": "d41d8cd98f00b204e9800998ecf8427e",
+    "url": "favicon.ico"
+  },
+  {
+    "revision": "6630d06f25ee65b7394231efc2078065",
     "url": "index.html"
   },
   {
-    "revision": "397ea72d4299d88624c0",
-    "url": "main.c42d3b750d697dbbae1b.bundle.js"
+    "revision": "503d778c5320911ce96d",
+    "url": "main.6c38873f48cb90c91266.bundle.js"
   },
   {
     "revision": "b4321e6f6a88a978d4964c0d1b432b03",
@@ -52,7 +68,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "sw.js"
   },
   {
-    "revision": "201b65bee9df6270f739",
-    "url": "vendors.a047ee0740c7d21714d9.bundle.js"
+    "revision": "324f31435cec3151a5ed",
+    "url": "vendors.a1a6c04959c089cbf1e5.bundle.js"
   }
 ]);

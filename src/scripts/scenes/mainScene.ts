@@ -174,8 +174,8 @@ export default class MainScene extends Phaser.Scene {
       let x = Math.floor(Math.random()* 300);
       let y = Math.floor(Math.random()* 90);
       if(this.cycle > 3 && x > this.boss.x - 100 && x < this.boss.x + 100){
-        //let boomuwu = this.add.sprite(x, y, "explosion")
-        //boomuwu.play("boom_anim");
+        let boomuwu = this.add.sprite(x, y, "explosion")
+        boomuwu.play("boom_anim");
       }
     }
   }

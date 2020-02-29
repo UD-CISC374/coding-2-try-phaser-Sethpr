@@ -4,13 +4,14 @@ import BossBeam from '../objects/BossBeam'
 import BossBall from '../objects/BossBall'
 import Boss from '../objects/Boss'
 import Bomb from '../objects/Bomb'
+import Player from '../objects/Player'
 import { GameObjects } from 'phaser';
 
 export default class MainScene extends Phaser.Scene {
   private exampleObject: ExampleObject;
   boss: Boss;
   background: Phaser.GameObjects.TileSprite;
-  player: Phaser.GameObjects.Sprite;
+  player: Player;
   beam: Phaser.GameObjects.Sprite;
   explosion: Phaser.GameObjects.Sprite;
   bossBall: Phaser.GameObjects.Sprite;
@@ -19,7 +20,6 @@ export default class MainScene extends Phaser.Scene {
   height: number;
   moveLeft: boolean;
   cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
-  spacebar: Phaser.Input.Keyboard.Key;
   projectiles: GameObjects.Group;
   bossShots: GameObjects.Group;
   body: Phaser.Physics.Arcade.Body;
@@ -29,10 +29,6 @@ export default class MainScene extends Phaser.Scene {
   win: Phaser.GameObjects.BitmapText;
   haCount: number;
   
-  
-
-  
-
   constructor() {
     super({ key: 'MainScene' });
   }
@@ -41,46 +37,20 @@ export default class MainScene extends Phaser.Scene {
     this.height = 272;
     this.width = 256;
     this.moveLeft = false;
-    this.load.image("background" , "assets/Images/background.png");
-    this.load.spritesheet("bomb", "assets/Images/power-up.png",{
-      frameWidth:16,
-      frameHeight:16
-    });
-    this.load.spritesheet("player" , "assets/Images/ship3.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("beam", "assets/Images/beam.png",{
-      frameWidth: 16,
-      frameHeight: 16
-    });
-    this.load.spritesheet("explosion" , "assets/Images/explosion.png",{
-      frameWidth: 16,
-      frameHeight: 16
-    });
-    this.load.spritesheet("ball", "assets/Images/ball.png",{
-      frameWidth:100,
-      frameHeight:100
-    });
-    this.load.image("boss", "assets/Images/Boss.png");
     this.hasWon = false;
     this.cycle = 0;
-    this.load.bitmapFont("pixelFont", "assets/font.png", "assets/font.xml")
     this.haCount = 0;
   }
 
-  create() {this.physics.add.image(this.width/2,30, "boss");
+  create() {
     this.background = this.add.tileSprite(0, 0, this.width, this.height, "background");
     this.background.setOrigin(0,0);
     this.boss = new Boss(this);
-    this.player = this.physics.add.sprite(this.width/2,this.height/2+70, "ship3");
+    this.player = new Player(this); //this.physics.add.sprite(this.width/2,this.height/2+70, "ship3");
     this.player.setScale(.8);
-    this.cursorKeys = this.input.keyboard.createCursorKeys();
-    this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.boss.setScale(.5);
     this.player.setAngle(180);
-    //this.player.setSize(26,24);
-    //this.player.setOffset(2,0);
+    this.cursorKeys = this.input.keyboard.createCursorKeys();
+    this.boss.setScale(.5);
     this.projectiles = this.add.group();
     this.bossShots = this.physics.add.group();
     this.physics.add.overlap(this.projectiles, this.boss, this.hurtBoss);
@@ -88,8 +58,6 @@ export default class MainScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.boss, this.loseBoss);
     this.scoreLabel = this.add.bitmapText(10,5,"pixelFont", "Health: ", 16 );
     
-    
-
     this.anims.create({
       key:"player_anim",
       frames: this.anims.generateFrameNumbers("player",{ start: 0, end: 1 }),
@@ -121,10 +89,6 @@ export default class MainScene extends Phaser.Scene {
       frameRate: 20,
       repeat: -1
     });
-
-    this.player.play("player_anim");
-
-    
   }
 
   update() {;
@@ -132,9 +96,11 @@ export default class MainScene extends Phaser.Scene {
     this.movePlayerManager();
     this.bossShotsManager();
 
+    this.cycle++;
+
     this.scoreLabel.text = "Health: " +this.boss.health;
 
-    if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
+    if(this.cycle%12 === 0 && this.boss.health > 0){
       this.shootBeam();
     }
 
@@ -170,10 +136,9 @@ export default class MainScene extends Phaser.Scene {
     }
     else{
       this.win = this.add.bitmapText(this.width/2-40,this.height/2-30,"pixelFont", "YOU WIN!", 30 );
-      this.cycle++;
       let x = Math.floor(Math.random()* 300);
       let y = Math.floor(Math.random()* 90);
-      if(this.cycle > 3 && x > this.boss.x - 100 && x < this.boss.x + 100){
+      if(x > this.boss.x - 100 && x < this.boss.x + 100){
         let boomuwu = this.add.sprite(x, y, "explosion")
         boomuwu.play("boom_anim");
       }
@@ -210,13 +175,10 @@ export default class MainScene extends Phaser.Scene {
 
   bossShotsManager(){
     if(this.boss.health>0 && this.player.active){
-      this.cycle++;
-
       for(let i =0; i<this.bossShots.getChildren().length; i++){
         let shot = this.bossShots.getChildren()[i];
         shot.update(); 
       }
-  
       if(this.cycle === 120){
         this.cycle = 0;
         let ball1 = new BossBall(this, 1, 1);
@@ -239,7 +201,6 @@ export default class MainScene extends Phaser.Scene {
           let bomb1 = new Bomb(this,2, 1, this.cycle);
           let bomb2 = new Bomb(this,2, 2, this.cycle);
         }
-
       }
     }
     else{

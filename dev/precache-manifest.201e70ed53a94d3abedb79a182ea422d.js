@@ -52,15 +52,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coding-2-try-phaser-Sethpr/devfavicon.ico"
   },
   {
-    "revision": "54f7cac1b53aa3231437",
-    "url": "/coding-2-try-phaser-Sethpr/devgen.main.2ad0a89c8d75e5131102.bundle.js"
+    "revision": "24d6c009ac40ceda70fe",
+    "url": "/coding-2-try-phaser-Sethpr/devgen.main.887e2df19f9dd49599b8.bundle.js"
   },
   {
     "revision": "324f31435cec3151a5ed",
     "url": "/coding-2-try-phaser-Sethpr/devgen.vendors.a1a6c04959c089cbf1e5.bundle.js"
   },
   {
-    "revision": "ae9993999d605921712a0abefc8363cf",
+    "revision": "1ea391f3d352500605543b1973f0337e",
     "url": "/coding-2-try-phaser-Sethpr/devindex.html"
   },
   {

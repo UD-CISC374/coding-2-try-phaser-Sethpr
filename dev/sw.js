@@ -1,4 +1,4 @@
-importScripts("/coding-2-try-phaser-Sethpr/devprecache-manifest.d5ed98fbcb40a49b61abfcb0c83b4b9d.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/coding-2-try-phaser-Sethpr/devprecache-manifest.f3ed5b21d91d55e661d66ad129a374cc.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /**
  * You should only modify this, if you know what you are doing.

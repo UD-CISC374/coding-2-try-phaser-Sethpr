@@ -20,6 +20,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coding-2-try-phaser-Sethpr/devassets/Images/explosion.png"
   },
   {
+    "revision": "05427110fd2c2de1d4738b31496a53c9",
+    "url": "/coding-2-try-phaser-Sethpr/devassets/Images/power-up.png"
+  },
+  {
     "revision": "6387e4bedb194c28efe573c1cc5ce303",
     "url": "/coding-2-try-phaser-Sethpr/devassets/Images/ship.png"
   },
@@ -48,15 +52,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coding-2-try-phaser-Sethpr/devfavicon.ico"
   },
   {
-    "revision": "7b5bb43fc5a5403fa2af",
-    "url": "/coding-2-try-phaser-Sethpr/devgen.main.4749f964636bb9f0ef4b.bundle.js"
+    "revision": "d2afa297371895d2369c",
+    "url": "/coding-2-try-phaser-Sethpr/devgen.main.f608304f38eaba54893e.bundle.js"
   },
   {
     "revision": "324f31435cec3151a5ed",
     "url": "/coding-2-try-phaser-Sethpr/devgen.vendors.a1a6c04959c089cbf1e5.bundle.js"
   },
   {
-    "revision": "92f4f6a48b424c899a9975fbec508a63",
+    "revision": "5d1d8f1501bd1109343a9a2fc1899935",
     "url": "/coding-2-try-phaser-Sethpr/devindex.html"
   },
   {

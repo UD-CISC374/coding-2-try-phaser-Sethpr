@@ -14,11 +14,13 @@ export default class BossBeam extends Phaser.GameObjects.Sprite{
         }
         scene.add.existing(this);
         this.setAngle(180);
+        this.setSize(8,10);
         scene.bossShots.add(this);
 
         this.play("beam_anim");
         scene.physics.world.enableBody(this);
         this.body.velocity.y = 150;
+        this.body.setOffset(4,4);
     }
 
     update(){

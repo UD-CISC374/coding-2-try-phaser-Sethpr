@@ -3,6 +3,7 @@ import Beam from '../objects/Beam'
 import BossBeam from '../objects/BossBeam'
 import BossBall from '../objects/BossBall'
 import Boss from '../objects/Boss'
+import Bomb from '../objects/Bomb'
 import { GameObjects } from 'phaser';
 
 export default class MainScene extends Phaser.Scene {
@@ -13,6 +14,7 @@ export default class MainScene extends Phaser.Scene {
   beam: Phaser.GameObjects.Sprite;
   explosion: Phaser.GameObjects.Sprite;
   bossBall: Phaser.GameObjects.Sprite;
+  bomb: Bomb;
   width: number;
   height: number;
   moveLeft: boolean;
@@ -27,6 +29,7 @@ export default class MainScene extends Phaser.Scene {
   win: Phaser.GameObjects.BitmapText;
   haCount: number;
   
+  
 
   
 
@@ -39,6 +42,10 @@ export default class MainScene extends Phaser.Scene {
     this.width = 256;
     this.moveLeft = false;
     this.load.image("background" , "assets/Images/background.png");
+    this.load.spritesheet("bomb", "assets/Images/power-up.png",{
+      frameWidth:16,
+      frameHeight:16
+    });
     this.load.spritesheet("player" , "assets/Images/ship3.png",{
       frameWidth: 32,
       frameHeight: 32
@@ -65,7 +72,6 @@ export default class MainScene extends Phaser.Scene {
   create() {this.physics.add.image(this.width/2,30, "boss");
     this.background = this.add.tileSprite(0, 0, this.width, this.height, "background");
     this.background.setOrigin(0,0);
-    //this.player = this.physics.add.sprite(this.width/2,this.height/2+70, "ship3");
     this.boss = new Boss(this);
     this.player = this.physics.add.sprite(this.width/2,this.height/2+70, "ship3");
     this.player.setScale(.8);
@@ -73,12 +79,15 @@ export default class MainScene extends Phaser.Scene {
     this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     this.boss.setScale(.5);
     this.player.setAngle(180);
+    //this.player.setSize(26,24);
+    //this.player.setOffset(2,0);
     this.projectiles = this.add.group();
     this.bossShots = this.physics.add.group();
     this.physics.add.overlap(this.projectiles, this.boss, this.hurtBoss);
     this.physics.add.overlap(this.player, this.bossShots, this.lose);
     this.physics.add.overlap(this.player, this.boss, this.loseBoss);
     this.scoreLabel = this.add.bitmapText(10,5,"pixelFont", "Health: ", 16 );
+    
     
 
     this.anims.create({
@@ -106,6 +115,12 @@ export default class MainScene extends Phaser.Scene {
       frameRate: 20,
       repeat:-1
     })
+    this.anims.create({
+      key:"bomb_anim",
+      frames: this.anims.generateFrameNumbers("bomb", {start:0, end:1}),
+      frameRate: 20,
+      repeat: -1
+    });
 
     this.player.play("player_anim");
 
@@ -159,8 +174,8 @@ export default class MainScene extends Phaser.Scene {
       let x = Math.floor(Math.random()* 300);
       let y = Math.floor(Math.random()* 90);
       if(this.cycle > 3 && x > this.boss.x - 100 && x < this.boss.x + 100){
-        let boomuwu = this.add.sprite(x, y, "explosion")
-        boomuwu.play("boom_anim");
+        //let boomuwu = this.add.sprite(x, y, "explosion")
+        //boomuwu.play("boom_anim");
       }
     }
   }
@@ -214,6 +229,17 @@ export default class MainScene extends Phaser.Scene {
       if(this.cycle === 60){
         let shot1 = new BossBeam(this, 1);
         let shot2 = new BossBeam(this, 2);
+      }
+      if(this.cycle%20 === 0){
+        if(this.cycle>60){
+          let bomb1 = new Bomb(this,1 , 1, this.cycle);
+          let bomb2 = new Bomb(this,1 , 2, this.cycle);
+        }
+        else{
+          let bomb1 = new Bomb(this,2, 1, this.cycle);
+          let bomb2 = new Bomb(this,2, 2, this.cycle);
+        }
+
       }
     }
     else{

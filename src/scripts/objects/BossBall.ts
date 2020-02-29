@@ -1,4 +1,4 @@
-export default class Beam extends Phaser.GameObjects.Sprite{
+export default class BossBall extends Phaser.GameObjects.Sprite{
     body: Phaser.Physics.Arcade.Body;
     len: number;
 
@@ -14,9 +14,12 @@ export default class Beam extends Phaser.GameObjects.Sprite{
             super(scene, x, y, "ball");
         }
         scene.add.existing(this);
+        //this.setSize(15,15)
         scene.bossShots.add(this);
         this.len = scene.height;
-        this.setScale(.15)
+        this.setScale(.35);
+        this.body.setSize(50,50);
+        this.body.setOffset(30,17)
 
         this.play("ball_anim");
         scene.physics.world.enableBody(this);

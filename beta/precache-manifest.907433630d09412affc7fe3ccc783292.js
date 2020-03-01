@@ -60,7 +60,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coding-2-try-phaser-Sethpr/betagen.vendors.a1a6c04959c089cbf1e5.bundle.js"
   },
   {
-    "revision": "276b79e589d559e21cd1dead88f46777",
+    "revision": "0d8141989f604bd666660c403ab90111",
     "url": "/coding-2-try-phaser-Sethpr/betaindex.html"
   },
   {

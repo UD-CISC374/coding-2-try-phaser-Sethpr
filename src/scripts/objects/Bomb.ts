@@ -16,18 +16,18 @@ export default class Bomb extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         scene.bossShots.add(this);
         this.len = scene.height;
-        this.setScale(.5);
+        this.setScale(.6);
 
 
         this.play("bomb_anim");
         scene.physics.world.enableBody(this);
-        this.body.velocity.y = 120;
-        if(mode === 1){
-            this.body.velocity.x = seq;
-        }
-        else{
-            this.body.velocity.x = -120-seq;
-        }
+        this.body.velocity.y = 130;
+            if(mode === 1){
+                this.body.velocity.x = 50;
+            }
+            else{
+                this.body.velocity.x = -50;
+            }
     }
 
     update(){

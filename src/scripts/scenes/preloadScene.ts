@@ -1,5 +1,5 @@
 import Boss from '../objects/Boss'
-export default class PreloadScene extends Phaser.Scene {//this.scene.start('MainScene');
+export default class PreloadScene extends Phaser.Scene {
   background: Phaser.GameObjects.TileSprite
   boss: Boss;
   bossArive: boolean;

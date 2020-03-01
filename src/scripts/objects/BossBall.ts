@@ -14,7 +14,6 @@ export default class BossBall extends Phaser.GameObjects.Sprite{
             super(scene, x, y, "ball");
         }
         scene.add.existing(this);
-        //this.setSize(15,15)
         scene.bossShots.add(this);
         this.len = scene.height;
         this.setScale(.35);

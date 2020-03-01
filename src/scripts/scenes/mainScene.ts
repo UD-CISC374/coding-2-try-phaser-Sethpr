@@ -28,6 +28,7 @@ export default class MainScene extends Phaser.Scene {
   scoreLabel: Phaser.GameObjects.BitmapText
   win: Phaser.GameObjects.BitmapText;
   haCount: number;
+  flip: boolean;
   
   constructor() {
     super({ key: 'MainScene' });
@@ -38,11 +39,18 @@ export default class MainScene extends Phaser.Scene {
     this.width = 256;
     this.moveLeft = false;
     this.hasWon = false;
+    this.flip = false;
     this.cycle = 0;
     this.haCount = 0;
   }
 
   create() {
+    this.anims.create({
+      key:"player_anim",
+      frames: this.anims.generateFrameNumbers("player",{ start: 0, end: 1 }),
+      frameRate: 20,
+      repeat: -1
+    });
     this.background = this.add.tileSprite(0, 0, this.width, this.height, "background");
     this.background.setOrigin(0,0);
     this.boss = new Boss(this);
@@ -95,14 +103,18 @@ export default class MainScene extends Phaser.Scene {
     this.playBoss();
     this.movePlayerManager();
     this.bossShotsManager();
-
     this.cycle++;
 
-    this.scoreLabel.text = "Health: " +this.boss.health;
+    if(this.cycle === 121){
+      this.cycle = 1;
+    }
 
-    if(this.cycle%12 === 0 && this.boss.health > 0){
+    this.scoreLabel.text = "Boss Health: " + this.boss.health;
+
+    if(this.cycle%10 === 0 && this.boss.health > 0){
       this.shootBeam();
     }
+    
 
     for(let i =0; i<this.projectiles.getChildren().length; i++){
       let beam = this.projectiles.getChildren()[i];
@@ -134,7 +146,7 @@ export default class MainScene extends Phaser.Scene {
         }
       }
     }
-    else{
+    else if(this.player.active){
       this.win = this.add.bitmapText(this.width/2-40,this.height/2-30,"pixelFont", "YOU WIN!", 30 );
       let x = Math.floor(Math.random()* 300);
       let y = Math.floor(Math.random()* 90);
@@ -148,23 +160,30 @@ export default class MainScene extends Phaser.Scene {
   movePlayerManager(){
     if(this.player.active){
       if(this.cursorKeys.left?.isDown && this.player.x > 13){
-        this.player.x -= 2;
+        this.player.x -= 2.5;
       }
       else if(this.cursorKeys.right?.isDown && this.player.x < this.width-13){
-        this.player.x += 2;
+        this.player.x += 2.5;
       }
       if(this.cursorKeys.up?.isDown && this.player.y > 13){
-        this.player.y -= 2;
+        this.player.y -= 2.5;
       }
       else if(this.cursorKeys.down?.isDown && this.player.y < this.height-13){
-        this.player.y += 2;
+        this.player.y += 2.5;
       }
     }
   }
   
   shootBeam(){
     if(this.player.active){
-      var beam = new Beam(this);
+      if(this.flip){
+        this.flip = false;
+        var beam = new Beam(this,1);
+      }
+      else{
+        this.flip = true;
+        var beam = new Beam(this,2);
+      }
     }
   }
 
@@ -180,7 +199,6 @@ export default class MainScene extends Phaser.Scene {
         shot.update(); 
       }
       if(this.cycle === 120){
-        this.cycle = 0;
         let ball1 = new BossBall(this, 1, 1);
         let ball2 = new BossBall(this, 2, 1);
         let ball3 = new BossBall(this, 3, 1);
@@ -192,8 +210,8 @@ export default class MainScene extends Phaser.Scene {
         let shot1 = new BossBeam(this, 1);
         let shot2 = new BossBeam(this, 2);
       }
-      if(this.cycle%20 === 0){
-        if(this.cycle>60){
+      if(this.cycle%30 === 0){
+        if(this.moveLeft){
           let bomb1 = new Bomb(this,1 , 1, this.cycle);
           let bomb2 = new Bomb(this,1 , 2, this.cycle);
         }

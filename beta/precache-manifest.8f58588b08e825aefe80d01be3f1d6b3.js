@@ -48,19 +48,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coding-2-try-phaser-Sethpr/betaassets/font.xml"
   },
   {
-    "revision": "d41d8cd98f00b204e9800998ecf8427e",
+    "revision": "853cce00ba94fd9ec6c9987763776763",
     "url": "/coding-2-try-phaser-Sethpr/betafavicon.ico"
   },
   {
-    "revision": "1dbdd0d318231cee5077",
-    "url": "/coding-2-try-phaser-Sethpr/betagen.main.f988b39bc78588087923.bundle.js"
+    "revision": "74f3590b6350f14bf3a1",
+    "url": "/coding-2-try-phaser-Sethpr/betagen.main.23325a30e9fe66a254e3.bundle.js"
   },
   {
     "revision": "324f31435cec3151a5ed",
     "url": "/coding-2-try-phaser-Sethpr/betagen.vendors.a1a6c04959c089cbf1e5.bundle.js"
   },
   {
-    "revision": "6588daf712955aa2dbe103a071f01b23",
+    "revision": "276b79e589d559e21cd1dead88f46777",
     "url": "/coding-2-try-phaser-Sethpr/betaindex.html"
   },
   {

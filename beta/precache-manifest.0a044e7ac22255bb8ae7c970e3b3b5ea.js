@@ -20,6 +20,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coding-2-try-phaser-Sethpr/betaassets/Images/explosion.png"
   },
   {
+    "revision": "05427110fd2c2de1d4738b31496a53c9",
+    "url": "/coding-2-try-phaser-Sethpr/betaassets/Images/power-up.png"
+  },
+  {
     "revision": "6387e4bedb194c28efe573c1cc5ce303",
     "url": "/coding-2-try-phaser-Sethpr/betaassets/Images/ship.png"
   },
@@ -44,15 +48,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coding-2-try-phaser-Sethpr/betaassets/font.xml"
   },
   {
-    "revision": "bac98ee3d6885ab8d1bc",
-    "url": "/coding-2-try-phaser-Sethpr/betagen.main.151234798b2b7218c481.bundle.js"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e",
+    "url": "/coding-2-try-phaser-Sethpr/betafavicon.ico"
+  },
+  {
+    "revision": "1dbdd0d318231cee5077",
+    "url": "/coding-2-try-phaser-Sethpr/betagen.main.f988b39bc78588087923.bundle.js"
   },
   {
     "revision": "324f31435cec3151a5ed",
     "url": "/coding-2-try-phaser-Sethpr/betagen.vendors.a1a6c04959c089cbf1e5.bundle.js"
   },
   {
-    "revision": "031f01542ef58743e2c186b77dcb6309",
+    "revision": "6588daf712955aa2dbe103a071f01b23",
     "url": "/coding-2-try-phaser-Sethpr/betaindex.html"
   },
   {

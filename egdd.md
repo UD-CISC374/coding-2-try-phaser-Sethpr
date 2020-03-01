@@ -92,15 +92,13 @@ meta:
 
 ## Player Modes
 
-- *Player mode #1*: *Description*
-- *Player mode #2*: *Description*
-- *etc.*
+- Active, player is moving and shooting
+- Inactive, player has died and is no longer moving or shooting
 
 # Gameplay Objectives
 
-- *Primary Objective #1*: *Description*
-- *Primary Objective #2*: *Description*
-- *etc.*
+- Destroy the boss
+
 
 # Procedures/Actions
 

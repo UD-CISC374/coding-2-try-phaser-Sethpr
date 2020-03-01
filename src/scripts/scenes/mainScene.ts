@@ -1,4 +1,3 @@
-import ExampleObject from '../objects/exampleObject';
 import Beam from '../objects/Beam'
 import BossBeam from '../objects/BossBeam'
 import BossBall from '../objects/BossBall'
@@ -8,7 +7,6 @@ import Player from '../objects/Player'
 import { GameObjects } from 'phaser';
 
 export default class MainScene extends Phaser.Scene {
-  private exampleObject: ExampleObject;
   boss: Boss;
   background: Phaser.GameObjects.TileSprite;
   player: Player;
@@ -34,9 +32,9 @@ export default class MainScene extends Phaser.Scene {
     super({ key: 'MainScene' });
   }
 
-  preload(){
-    this.height = 272;
-    this.width = 256;
+  preload(){//so Seth, I hear you ask, why are you defining width and height here
+    this.height = 272;//BECAUSE   CAN'T        OUT     TO     CONFIG
+    this.width = 256;//         I       FIGURE     HOW    GET        REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
     this.moveLeft = false;
     this.hasWon = false;
     this.flip = false;
@@ -44,13 +42,11 @@ export default class MainScene extends Phaser.Scene {
     this.haCount = 0;
   }
 
-  create() {
+  create() {//I just kinda make everything here
     this.background = this.add.tileSprite(0, 0, this.width, this.height, "background");
     this.background.setOrigin(0,0);
     this.boss = new Boss(this);
     this.player = new Player(this);
-    this.player.setScale(.8);
-    this.player.setAngle(180);
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.boss.setScale(.5);
     this.projectiles = this.add.group();
@@ -60,6 +56,8 @@ export default class MainScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.boss, this.loseBoss);
     this.scoreLabel = this.add.bitmapText(10,5,"pixelFont", "Health: ", 16 );
     
+
+    //hey look I am creating animations, you did this too why are you still reading this
     this.anims.create({
       key:"boom_anim",
       frames: this.anims.generateFrameNumbers("explosion",{ start: 0, end: 4 }),
@@ -87,7 +85,7 @@ export default class MainScene extends Phaser.Scene {
     });
   }
 
-  update() {;
+  update() {
     this.playBoss();
     this.movePlayerManager();
     this.bossShotsManager();
@@ -99,7 +97,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.scoreLabel.text = "Boss Health: " + this.boss.health;
 
-    if(this.cycle%10 === 0 && this.boss.health > 0){
+    if(this.cycle%10 === 0 && this.boss.health > 0){ //allows autofire and stops when boss is dead
       this.shootBeam();
     }
     
@@ -110,7 +108,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     if(!this.player.active){
-      if(this.haCount < 1500){
+      if(this.haCount < 1500){ //this laughs at you when you lose, I said when, not if.
         this.haCount++;
         let ha = this.add.bitmapText(Math.floor(Math.random()*this.width),Math.floor(Math.random()*this.height),"pixelFont", "HA", 15 );
       }
@@ -119,7 +117,7 @@ export default class MainScene extends Phaser.Scene {
     this.background.tilePositionY -= 0.5;
   }
 
-  playBoss(){
+  playBoss(){ //scrolls boss left and right
     if(this.boss.health>0){
       if(this.moveLeft){
        this.boss.x -=1;
@@ -134,18 +132,18 @@ export default class MainScene extends Phaser.Scene {
         }
       }
     }
-    else if(this.player.active){
+    else if(this.player.active){ //why did I put this here
       this.win = this.add.bitmapText(this.width/2-40,this.height/2-30,"pixelFont", "YOU WIN!", 30 );
       let x = Math.floor(Math.random()* 300);
       let y = Math.floor(Math.random()* 90);
       if(x > this.boss.x - 100 && x < this.boss.x + 100){
-        let boomuwu = this.add.sprite(x, y, "explosion")
+        let boomuwu = this.add.sprite(x, y, "explosion")//uwu
         boomuwu.play("boom_anim");
       }
     }
   }
   
-  movePlayerManager(){
+  movePlayerManager(){ //moves player with arrow keys
     if(this.player.active){
       if(this.cursorKeys.left?.isDown && this.player.x > 13){
         this.player.x -= 2.5;
@@ -162,7 +160,7 @@ export default class MainScene extends Phaser.Scene {
     }
   }
   
-  shootBeam(){
+  shootBeam(){ //creates beam on alternating sides for good lookz
     if(this.player.active){
       if(this.flip){
         this.flip = false;
@@ -175,18 +173,18 @@ export default class MainScene extends Phaser.Scene {
     }
   }
 
-  hurtBoss(projectile, boss){
+  hurtBoss(projectile, boss){//this makes the boss go ouchie, and removes the projectile
     boss.hurt()
     projectile.destroy();
   }
 
   bossShotsManager(){
-    if(this.boss.health>0 && this.player.active){
+    if(this.boss.health>0 && this.player.active){//updates all boss projectiles
       for(let i =0; i<this.bossShots.getChildren().length; i++){
         let shot = this.bossShots.getChildren()[i];
         shot.update(); 
       }
-      if(this.cycle === 120){
+      if(this.cycle === 120){ //balls to the wall, or well... player... this shoots big blue balls moving in 6 uniquish ways
         let ball1 = new BossBall(this, 1, 1);
         let ball2 = new BossBall(this, 2, 1);
         let ball3 = new BossBall(this, 3, 1);
@@ -194,11 +192,11 @@ export default class MainScene extends Phaser.Scene {
         let ball5 = new BossBall(this, 2, 2);
         let ball6 = new BossBall(this, 3, 2);
       }
-      if(this.cycle === 60){
+      if(this.cycle === 60){ //simple pews out of front, fun fact you can go between them
         let shot1 = new BossBeam(this, 1);
         let shot2 = new BossBeam(this, 2);
       }
-      if(this.cycle%30 === 0){
+      if(this.cycle%30 === 0){//creates the red balls flipping shooting direction based on boss movement
         if(this.moveLeft){
           let bomb1 = new Bomb(this,1 , 1, this.cycle);
           let bomb2 = new Bomb(this,1 , 2, this.cycle);
@@ -209,14 +207,14 @@ export default class MainScene extends Phaser.Scene {
         }
       }
     }
-    else{
+    else{//makes sure you don't lose after you win
       for(let i =0; i<this.bossShots.getChildren().length; i++){
         let shot = this.bossShots.getChildren()[i];
         shot.destroy(); 
       }
     }
   }
-  lose(player){
+  lose(player){ //get good scrub
       player.destroy();
   }
   loseBoss(player, boss){

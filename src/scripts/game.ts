@@ -23,7 +23,7 @@ const config: GameConfig = {
         default: 'arcade',
         arcade: {
             debug: false,
-            //gravity: { y: 400 }
+            //gravity: { y: 400 } //why was this even here to begin with
         }
     }
 };
@@ -32,4 +32,4 @@ window.addEventListener('load', () => {
     window['game'] = new Phaser.Game(config);
 });
 
-//
+

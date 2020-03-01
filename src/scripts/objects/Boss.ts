@@ -2,7 +2,7 @@ export default class Boss extends Phaser.GameObjects.Image{
     body: Phaser.Physics.Arcade.Body;
     health: number;
 
-    constructor(scene) {//this.physics.add.image(this.width/2,30, "boss");
+    constructor(scene) {//the big boy, the chonker, the unit, boss he's cool I guess
         let x = 256/2;
         let y = 30;
         super(scene, x, y, "boss");
@@ -12,7 +12,7 @@ export default class Boss extends Phaser.GameObjects.Image{
     }
 
 
-    hurt(){
+    hurt(){ //wow you are actually reading this? It's pretty self explanitory 
         if(this.health>0){
             this.health--;
         }

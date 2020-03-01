@@ -3,7 +3,7 @@ export default class Bomb extends Phaser.GameObjects.Sprite{
     len: number;
 
     constructor(scene, mode:number, side:number, seq:number) {
-        if(side === 1){
+        if(side === 1){ //wow this looks terrible, well at least it does not in game uwu
             let x = scene.boss.x - 39;
             let y = scene.boss.y + 60;
             super(scene, x, y, "bomb");
@@ -16,13 +16,13 @@ export default class Bomb extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         scene.bossShots.add(this);
         this.len = scene.height;
-        this.setScale(.6);
+        this.setScale(.6); //bomb too big, no longer too big
 
 
         this.play("bomb_anim");
         scene.physics.world.enableBody(this);
         this.body.velocity.y = 130;
-            if(mode === 1){
+            if(mode === 1){ //whats this switchy crap? I like things to move in different directions, cool it
                 this.body.velocity.x = 50;
             }
             else{

@@ -9,7 +9,7 @@ export default class PreloadScene extends Phaser.Scene {
     super({ key: 'PreloadScene' });
   }
 
-  preload() {
+  preload() {//Hey look I have all my images (wow)
     this.load.image("background" , "assets/Images/background.png");
     this.load.image("boss", "assets/Images/Boss.png");
     this.load.spritesheet("bomb", "assets/Images/power-up.png",{
@@ -36,7 +36,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.bitmapFont("pixelFont", "assets/font.png", "assets/font.xml")
   }
 
-  create() {
+  create() {//wow this is a lot of lines for a stupid flyup animation
     this.background = this.add.tileSprite(0, 0, 256, 272, "background");
     this.background.setOrigin(0,0);
     this.boss = new Boss(this);
@@ -53,7 +53,7 @@ export default class PreloadScene extends Phaser.Scene {
     });
     this.player.play("player_anim");
   }
-  update(){
+  update(){//wow you deticated even more lines of code to a flyup animation, whats wrong with you
     this.boss.y+=.5;
     this.player.y-=.5;
     if(this.boss.y===30){

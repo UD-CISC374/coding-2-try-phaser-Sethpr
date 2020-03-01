@@ -42,12 +42,20 @@ export default class PreloadScene extends Phaser.Scene {
     this.boss = new Boss(this);
     this.boss.y = -50
     this.boss.setScale(.5);
-    //this.player = this.physics.add.sprite(config.width/2,config.scale.height/2+70, "ship3");
-    //this.player.setScale(.8);
-    //this.player.setAngle(180);
+    this.player = this.physics.add.sprite(256/2,286, "ship3");
+    this.player.setScale(.8);
+    this.player.setAngle(180);
+    this.anims.create({
+      key:"player_anim",
+      frames: this.anims.generateFrameNumbers("player",{ start: 0, end: 1 }),
+      frameRate: 20,
+      repeat: -1
+    });
+    this.player.play("player_anim");
   }
   update(){
-    this.boss.y+=.5
+    this.boss.y+=.5;
+    this.player.y-=.5;
     if(this.boss.y===30){
       this.scene.start('MainScene');
     }

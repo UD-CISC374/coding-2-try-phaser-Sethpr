@@ -45,16 +45,10 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
-    this.anims.create({
-      key:"player_anim",
-      frames: this.anims.generateFrameNumbers("player",{ start: 0, end: 1 }),
-      frameRate: 20,
-      repeat: -1
-    });
     this.background = this.add.tileSprite(0, 0, this.width, this.height, "background");
     this.background.setOrigin(0,0);
     this.boss = new Boss(this);
-    this.player = new Player(this); //this.physics.add.sprite(this.width/2,this.height/2+70, "ship3");
+    this.player = new Player(this);
     this.player.setScale(.8);
     this.player.setAngle(180);
     this.cursorKeys = this.input.keyboard.createCursorKeys();
@@ -66,12 +60,6 @@ export default class MainScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.boss, this.loseBoss);
     this.scoreLabel = this.add.bitmapText(10,5,"pixelFont", "Health: ", 16 );
     
-    this.anims.create({
-      key:"player_anim",
-      frames: this.anims.generateFrameNumbers("player",{ start: 0, end: 1 }),
-      frameRate: 20,
-      repeat: -1
-    });
     this.anims.create({
       key:"boom_anim",
       frames: this.anims.generateFrameNumbers("explosion",{ start: 0, end: 4 }),
@@ -232,6 +220,11 @@ export default class MainScene extends Phaser.Scene {
       player.destroy();
   }
   loseBoss(player, boss){
+    boss.hurt();  //Hi, Seth here, I am sure you are asking "why didn't you write a loop?" 
+    boss.hurt();  //The answer is because I didn't want to and it's 5 of them
+    boss.hurt();
+    boss.hurt();
+    boss.hurt();
     if(boss.health > 0){
       player.destroy();
     }
